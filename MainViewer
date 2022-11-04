@@ -1,0 +1,131 @@
+package com.calculadora_imc.view;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.calculadora_imc.control.ImcController;
+
+public class MainViewer {
+
+	private JFrame appFrame;
+	private JTextField pesoTextField;
+	private JTextField alturaTextField;
+	private JTextPane resultPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainViewer window = new MainViewer();
+					window.appFrame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MainViewer() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		appFrame = new JFrame();
+		appFrame.setAlwaysOnTop(true);
+		appFrame.setTitle("IMC APP");
+		appFrame.setBounds(100, 100, 300, 400);
+		appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		appFrame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Calculadora IMC");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setBounds(25, 0, 235, 48);
+		appFrame.getContentPane().add(lblNewLabel);
+		
+		JLabel pesoLabel_1 = new JLabel("Peso");
+		pesoLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		pesoLabel_1.setBounds(25, 107, 45, 13);
+		appFrame.getContentPane().add(pesoLabel_1);
+		
+		pesoTextField = new JTextField();
+		pesoTextField.setText("0.0");
+		pesoTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		pesoTextField.setBounds(142, 90, 96, 50);
+		appFrame.getContentPane().add(pesoTextField);
+		pesoTextField.setColumns(10);
+		
+		JLabel alturaLabel_1_1 = new JLabel("Altura");
+		alturaLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		alturaLabel_1_1.setBounds(25, 167, 45, 13);
+		appFrame.getContentPane().add(alturaLabel_1_1);
+		
+		alturaTextField = new JTextField();
+		alturaTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		alturaTextField.setText("0.0");
+		alturaTextField.setColumns(10);
+		alturaTextField.setBounds(142, 150, 96, 50);
+		appFrame.getContentPane().add(alturaTextField);
+		
+		JButton calcularButton = new JButton("Calcular");
+		calcularButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		calcularButton.setBounds(25, 218, 235, 50);
+		calcularButton.addActionListener(new ImcController(this));
+		appFrame.getContentPane().add(calcularButton);
+		
+		resultPane = new JTextPane();
+		resultPane.setBorder(new EmptyBorder(8, 8, 8, 8));
+		resultPane.setText("Result");
+		resultPane.setBounds(25, 294, 235, 48);
+		appFrame.getContentPane().add(resultPane);
+	}
+
+	public JFrame getAppFrame() {
+		return appFrame;
+	}
+
+	public void setAppFrame(JFrame appFrame) {
+		this.appFrame = appFrame;
+	}
+
+	public JTextField getPesoTextField() {
+		return pesoTextField;
+	}
+
+	public void setPesoTextField(JTextField pesoTextField) {
+		this.pesoTextField = pesoTextField;
+	}
+
+	public JTextField getAlturaTextField() {
+		return alturaTextField;
+	}
+
+	public void setAlturaTextField(JTextField alturaTextField) {
+		this.alturaTextField = alturaTextField;
+	}
+
+	public JTextPane getResultPane() {
+		return resultPane;
+	}
+
+	public void setResultPane(JTextPane resultPane) {
+		this.resultPane = resultPane;
+	}	
+  
+}
